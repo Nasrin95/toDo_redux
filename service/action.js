@@ -31,10 +31,10 @@ const setItemAction = (text) => {
     }
 }
 
-const setRemoveItemAction = (index)  => {
+const setRemoveItemAction = (idex)  => {
     return{
         type : REMOVE_ITEM,
-        payload : index
+        payload : idex
     }
 }
 

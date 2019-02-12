@@ -30,6 +30,7 @@ class Userchanger extends Component{
 
     setText(input ){
         this.setState({
+            
             text: input || 'noThing'
         })
     }
@@ -38,13 +39,16 @@ class Userchanger extends Component{
     {
         // this.props.setName (this.state.nameText)
         // this.props.setLastname (this.state.lastText)
-        // this.props.setId ()
-        this.props.setItem (this.state.text)
-        this.setState({
-  
-            text : ''
-            
-        })
+        this.props.setId ()
+        if(this.state.text.length > 0 ){
+            this.props.setItem (this.state.text)
+            this.setState({
+      
+                text : ''
+                
+            })
+        }
+        
     }
 
     render(){

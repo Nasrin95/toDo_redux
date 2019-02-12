@@ -25,9 +25,17 @@ class UserListener extends Component {
 
     onPressButtonFlat =(index) =>
     {
-        console.log('index'  , index)
-        // alert(index)
-        this.props.setRemoveItem (index)
+        console.log('id'  , index)
+        alert(
+            'item deleted',
+            // [
+            //     {text: 'ok', onPress: (index) => this.props.setRemoveItem (index)},
+            //     {text: 'cancel', onPress: (index) => this.props.setRemoveItem (index)},
+            // ],
+            this.props.setRemoveItem (index)
+        )
+        // alert("delet")
+        
     }
     
     render(){
@@ -40,12 +48,12 @@ class UserListener extends Component {
                     ItemSeparatorComponent={this.renderSeparator}
                     style = {styles.flatStyle}
                     data = {this.props.items}
-                    keyExtractor = {item => item}
+                    keyExtractor = {item => item.id}
                     renderItem ={ ({item , index})  => 
                     <View style = {styles.itemStyle}>
                         <TouchableOpacity onPress={this.onPressButtonFlat.bind(this ,index)} >
                             
-                            <Text style={styles.fontStyle} >{item}</Text>
+                            <Text style={styles.fontStyle} >{item.text}</Text>
                         </TouchableOpacity>
                     </View>
                 }
