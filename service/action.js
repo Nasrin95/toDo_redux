@@ -1,4 +1,4 @@
-import { SET_NAME , SET_LASTNAME , SET_ID , SET_ITEM , REMOVE_ITEM} from "./type";
+import { SET_NAME , SET_LASTNAME , SET_ID , SET_ITEM , REMOVE_ITEM , FETCH_PRODUCTS_BEGIN , FETCH_PRODUCTS_SUCCESS , FETCH_PRODUCTS_FAILURE} from "./type";
 import {store} from '../page/App1'
 
 
@@ -38,6 +38,28 @@ const setRemoveItemAction = (idex)  => {
     }
 }
 
+
+ const fetchProductsBegin = () => ({
+    type: FETCH_PRODUCTS_BEGIN
+  });
+
+  const fetchProductsSuccess = products => {
+      return {
+        type: FETCH_PRODUCTS_SUCCESS,
+        payload:  products 
+      }
+  }
+  
+ 
+   const fetchProductsFailure = error => ({
+    type: FETCH_PRODUCTS_FAILURE,
+    payload:  error 
+  });
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 export const  setName = text => {
     return setNameAction(text);
 } ;
@@ -59,3 +81,21 @@ export const  setItem = text => {
 export const  setRemoveItem = index => {
     return setRemoveItemAction(index);
 } ;
+
+
+export const fetchProducts = () => {
+    
+    return dispatch => {
+        
+      dispatch(fetchProductsBegin());
+      fetch("https://api.github.com/users")
+        .then(r => {
+            return r.json();
+        })
+        .then(data => {
+
+          dispatch(fetchProductsSuccess(data));
+        })
+        .catch(error => dispatch(fetchProductsFailure(error)));
+    };
+  }

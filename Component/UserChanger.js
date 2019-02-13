@@ -1,7 +1,7 @@
 import React , {Component} from 'react'
 import { Text, View ,StyleSheet , TextInput , TouchableOpacity} from 'react-native'
 import{connect} from 'react-redux'
-import{setName , setLastname , setId , setItem} from '../service/action'
+import{setName , setLastname , setId , setItem , fetchProducts} from '../service/action'
 
 class Userchanger extends Component{
 
@@ -31,23 +31,26 @@ class Userchanger extends Component{
     setText(input ){
         this.setState({
             
-            text: input || 'noThing'
+            text: input 
         })
     }
     
     onPressButton =() =>
     {
+        
         // this.props.setName (this.state.nameText)
         // this.props.setLastname (this.state.lastText)
-        this.props.setId ()
-        if(this.state.text.length > 0 ){
-            this.props.setItem (this.state.text)
-            this.setState({
+        // this.props.setId (),
+        this.props.fetchProducts ()
+        // this.props.dispatch(fetchProducts());
+        // if(this.state.text.length > 0 ){
+        //     // this.props.setItem (this.state.text)
+        //     this.setState({
       
-                text : ''
+        //         text : ''
                 
-            })
-        }
+        //     })
+        // }
         
     }
 
@@ -59,12 +62,12 @@ class Userchanger extends Component{
                 style={styles.inputStyle}
                 onChangeText = {this.setTextName.bind(this)}
                 /> */}
-                <TextInput 
+                {/* <TextInput 
                 placeholder = {'type your work =))'}
                 value = {this.state.text}
                 style={styles.inputStyle}
-                onChangeText = {this.setText.bind(this)}
-                />
+                onChangeText = {this.setText.bind(this)} */}
+                {/* /> */}
                 <TouchableOpacity onPress={this.onPressButton.bind(this)}
                  
                     style ={styles.bottonStyle}>
@@ -116,4 +119,4 @@ const styles = StyleSheet.create({
 
 
 
-export default  connect (null ,{setName , setLastname , setId , setItem})(Userchanger);
+export default  connect (null ,{setName , setLastname , setId , setItem , fetchProducts})(Userchanger);

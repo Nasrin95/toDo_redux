@@ -51,13 +51,12 @@ class UserListener extends Component {
                     keyExtractor = {item => item.id}
                     renderItem ={ ({item , index})  => 
                     <View style = {styles.itemStyle}>
-                        <TouchableOpacity onPress={this.onPressButtonFlat.bind(this ,index)} >
-                            
-                            <Text style={styles.fontStyle} >{item.text}</Text>
+                        <TouchableOpacity onPress={this.onPressButtonFlat.bind(this ,index)}>
+                          <Text style={styles.fontStyle}>{item.login}</Text>
                         </TouchableOpacity>
                     </View>
                 }
-                         
+                   
                 />
             </View>
         )
@@ -97,7 +96,7 @@ const mapStateToProps=(state)=>{
         // name:state.name,
         // lastname:state.lastname,
         // id : state.id
-        items : state. item
+        items : state.item
     }
 
 }
